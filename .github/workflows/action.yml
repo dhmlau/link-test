@@ -8,6 +8,6 @@ jobs:
       id: lc
       uses: peter-evans/link-checker@v1
       with:
-        args: -v -r -d docs
-    - name: Output exit code
-      run: echo ${{ steps.lc.outputs.exit_code }}
+        args: -d docs -v -r *
+    - name: Fail if there were link errors
+      run: exit ${{ steps.lc.outputs.exit_code }}
