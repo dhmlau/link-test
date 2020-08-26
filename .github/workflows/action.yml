@@ -5,5 +5,8 @@ jobs:
   linkChecker:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Link Checker
         uses: peter-evans/link-checker@v1
+      - name: Fail if there were link errors
+        run: exit ${{ steps.lc.outputs.exit_code }}
